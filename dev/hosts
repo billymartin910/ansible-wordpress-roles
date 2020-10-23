@@ -1,3 +1,2 @@
 [web]
-web1 ansible_hosts=52.206.226.128 ansible_user=centos
-
+Web1 ansible_host=18.212.40.89 ansible_user=centos

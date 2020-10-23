@@ -1,0 +1,5 @@
+- hosts: all
+  vars: 
+    server_name: web1
+  roles:
+  - ansible-role-hostname
