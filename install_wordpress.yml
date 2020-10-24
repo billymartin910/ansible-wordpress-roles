@@ -1,5 +1,6 @@
 - hosts: all
-  vars: 
-    server_name: web1
-  roles:
-  - ansible-role-hostname
+  tasks:
+  - import_role:
+      name: ansible-role-hostname
+    vars:
+      server_name: "{{ inventory_hostname }}"
