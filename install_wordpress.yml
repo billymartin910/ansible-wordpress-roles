@@ -1,6 +1,27 @@
 - hosts: all
-  tasks:
-  - import_role:
+  tasks: 
+  - name: Update hostname
+    import_role:
       name: ansible-role-hostname
-    vars:
+    vars: 
       server_name: "{{ inventory_hostname }}"
+  - name: Install PHP
+    import_role:
+      name: ansible-role-php
+    vars:
+      php_version: "7.3"
+  - name: Install Apache
+    import_role:
+      name: ansible-role-apache
+
+  - name: Install MariaDB
+    import_role:
+      name: ansible-role-mariadb
+ 
+  
+  - name: Create MySQL User
+    mysql_user:
+      name: "{{ mysql_user }}"
+      password: "{{ mysql_password }}"
+      priv: '*.*:ALL'
+      state: present
