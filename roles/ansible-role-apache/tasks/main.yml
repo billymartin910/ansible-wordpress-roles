@@ -1,0 +1,9 @@
+- name: Apache
+  yum: 
+    name: httpd 
+
+- name: Start Apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes
