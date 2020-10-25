@@ -25,3 +25,8 @@
       password: "{{ mysql_password }}"
       priv: '*.*:ALL'
       state: present
+
+  - name: Install Wordpress
+    import_role: 
+      name: ansible-role-wordpress
+
