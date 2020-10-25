@@ -1,32 +1,33 @@
 - hosts: all
-  tasks: 
+  tasks:
   - name: Update hostname
     import_role:
       name: ansible-role-hostname
-    vars: 
+    vars:
       server_name: "{{ inventory_hostname }}"
+
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
   - name: Install PHP
     import_role:
       name: ansible-role-php
     vars:
       php_version: "7.3"
+
   - name: Install Apache
     import_role:
       name: ansible-role-apache
-
+  
   - name: Install MariaDB
     import_role:
       name: ansible-role-mariadb
- 
+    vars:
+      mysql_db: "wordpress"
+      mysql_user: "{{ wp_mysql_user }}"
+      mysql_password: "{{ wp_mysql_password }}"
   
-  - name: Create MySQL User
-    mysql_user:
-      name: "{{ mysql_user }}"
-      password: "{{ mysql_password }}"
-      priv: '*.*:ALL'
-      state: present
-
-  - name: Install Wordpress
-    import_role: 
+  - name: Install WordPress
+    import_role:
       name: ansible-role-wordpress
-
