@@ -11,6 +11,11 @@
   args:
     creates:  /var/www/html/index.php
 
+- name: Copy wp-confige.php file
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/html/wp-config.php
+
 - name: Change file ownership
   file: 
     path: /var/www/html
